@@ -7,7 +7,7 @@ const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
 require('dotenv').config()
 
-//load conncted user
+//load connected user
 router.get('/',authMiddleware,(req,res)=>{
     user.findById(req.userId).select('-password -__v')
         .then(user=>{
