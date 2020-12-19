@@ -1,0 +1,47 @@
+import React from "react";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBIcon, MDBView, MDBBtn } from "mdbreact";
+
+const BlogPage = () => {
+  return (
+    <MDBCard className="my-5 px-5 pb-5">
+      <MDBCardBody>
+        <MDBRow>
+          <MDBCol md="12">
+            <MDBCard reverse>
+              <MDBView hover cascade waves>
+                <img
+                  src="https://mdbootstrap.com/img/Photos/Slides/img%20(142).jpg"
+                  alt=""
+                  className="img-fluid"
+                />
+                <MDBMask overlay="white-slight" className="waves-light" />
+              </MDBView>
+              <MDBCardBody cascade className="text-center">
+                <h2 className="font-weight-bold">
+                  <a href="#!"> WELCOME </a>
+                </h2>
+                <p>
+                  Written by
+                  <a href="#!">
+                    <strong> GO MY CODE Students</strong>
+                  </a>
+                  , 19/12/2020
+                </p>
+              </MDBCardBody>
+            </MDBCard>
+            <MDBContainer className="mt-5">
+              <p>
+              Blogs are a special type of website that can be presented as a kind of private diary published on the Web, and accessible to Internet users around the world. This is a simplified version of a website, offered turnkey to Internet users, and technically managed by a publisher.
+              </p>
+              <p>
+              Concretely, the blog therefore allows certain Internet users, bloggers, to share their opinions, comments, moods, points of view on the news, by writing articles, posting photos, etc.
+              </p>
+            </MDBContainer>
+          </MDBCol>
+        </MDBRow>
+      </MDBCardBody>
+    </MDBCard>
+  );
+}
+
+export default BlogPage;
