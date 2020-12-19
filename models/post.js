@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const postSchema = new mongoose.Schema({
-    owner: {
+    user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
     },
