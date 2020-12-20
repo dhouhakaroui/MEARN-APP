@@ -13,17 +13,21 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
+    date: {
+        type: Date,
+        default: Date.now,
+    },
     likes: [{
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "users",
-        },
+        }
     }],
     dislikes: [{
         user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: "users",
-        },
+        }
     }],
     comments: [{
         text: {
@@ -37,7 +41,7 @@ const postSchema = new mongoose.Schema({
         date: {
             type: Date,
             default: Date.now,
-        },
-    }],
+        }
+    }]
 });
 module.exports = mongoose.model("post", postSchema);
