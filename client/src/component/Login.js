@@ -7,9 +7,7 @@ function Login({history}) {
         email:'',
         password:''
     })
-    const handleChange=(e)=>{
-        setInfo({...info,[e.target.name]:e.target.value})
-    }
+    const handleChange=(e)=>{setInfo({...info,[e.target.name]:e.target.value})}
     const [errors, setErrors] = useState(null)
     const dispatch=useDispatch()
     const login=e=>{
@@ -18,12 +16,8 @@ function Login({history}) {
     }
     const auth=useSelector(state=>state.authReducer)
     useEffect(() => {
-        if (auth.isAuth){
-            history.push('/profile')
-        }
-        if (auth.errors){
-            setErrors(auth.errors)
-        }
+        if (auth.isAuth){ history.push('/profile')}
+        if (auth.errors){ setErrors(auth.errors)}
     }, [auth.isAuth,auth.errors])
     return (
         <div className="login">
@@ -44,7 +38,7 @@ function Login({history}) {
                     </form>
                     </MDBCol>
                 </MDBRow>
-                </MDBContainer>
+            </MDBContainer>
         </div>
     )
 }

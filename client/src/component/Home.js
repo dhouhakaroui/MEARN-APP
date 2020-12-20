@@ -1,5 +1,5 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBIcon, MDBView, MDBBtn } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBView } from "mdbreact";
 
 const BlogPage = () => {
   return (
@@ -16,16 +16,10 @@ const BlogPage = () => {
                 />
                 <MDBMask overlay="white-slight" className="waves-light" />
               </MDBView>
-              <MDBCardBody cascade className="text-center">
-                <h2 className="font-weight-bold">
-                  <a href="#!"> WELCOME </a>
-                </h2>
+              <MDBCardBody cascade className="text-center" >
+                <h2 className="font-weight-bold" > WELCOME </h2>
                 <p>
-                  Written by
-                  <a href="#!">
-                    <strong> GO MY CODE Students</strong>
-                  </a>
-                  , 19/12/2020
+                  Written by <strong> GO MY CODE Students</strong>, 19/12/2020
                 </p>
               </MDBCardBody>
             </MDBCard>
