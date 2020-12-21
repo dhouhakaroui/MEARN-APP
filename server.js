@@ -3,7 +3,8 @@ const app = express();
 const mongoose=require('mongoose');
 const router = require('./routes/post');
 require("dotenv").config();
-
+   
+//ines
 // init middleware to parse body
 app.use(express.json())
 
