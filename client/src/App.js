@@ -9,6 +9,8 @@ import Login from './component/Login'
 import Profile from './component/Profile'
 import Navbar from './component/Navbar'
 import PrivateRoute from './PrivateRoute';
+import Posts from './component/Posts';
+import Users from './component/Users';
 
 
 
@@ -20,7 +22,10 @@ function App() {
         <Route exact path='/' component={Home}/>
         <Route exact path='/register' component={Register}/>
         <Route exact path='/login' component={Login}/>
+        <Route exact path='/Allposts' component={Posts}/>
+        <Route exact path='/Users' component={Users}/>
         <PrivateRoute exact path='/profile' component={Profile}/>
+
       </Switch> 
     </Router>
   );

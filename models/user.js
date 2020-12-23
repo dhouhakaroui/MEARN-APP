@@ -30,6 +30,9 @@ const userSchema = new mongoose.Schema({
     type: Number,
     default: 0, //0 for user ,1 for admin
   },
+  avatar :{
+    type: String
+  },
   date:{
     type: Date,
     default:Date.now

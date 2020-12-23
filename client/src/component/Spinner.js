@@ -1,13 +1,14 @@
 import React from "react";
-
-const SpinnerPage = () => {
+import spinner from './spinner.gif'
+const Spinner = () => {
   return (
     <>
-      <div className="spinner-border text-info" role="status">
-        <span className="sr-only">Loading...</span>
-      </div>
+      <img src={spinner}
+        style={{width: '200px', margin: 'auto', display: 'block'}}
+        alt="Loading..."
+      />
     </>
   );
 }
 
-export default SpinnerPage;
+export default Spinner;

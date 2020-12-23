@@ -15,16 +15,19 @@ const dispatch = useDispatch()
     <div style={{margin:10}}>
       <MDBNavbar color="default-color" dark expand="md">
         <MDBNavbarBrand>
-          <strong className="white-text">MERN APP</strong>
+          <strong className="white-text">DEV_DIW</strong>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={open} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem active>
+            <MDBNavItem >
               <MDBNavLink to="/">Home</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/">Posts</MDBNavLink>
+              <MDBNavLink to="/Allposts">Posts</MDBNavLink>
+            </MDBNavItem>
+            <MDBNavItem>
+              <MDBNavLink to="/Users">Users</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/profile">profile</MDBNavLink>
