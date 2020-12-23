@@ -21,6 +21,7 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true },(err) 
 app.use('/register',require('./routes/register'))
 app.use('/login',require('./routes/login'))
 app.use('/post',require('./routes/post'))
+app.use('/users',require('./routes/users'))
 
 const port=process.env.PORT||5000;
 app.listen(port,()=>{

@@ -1,47 +1,56 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-const postSchema = new mongoose.Schema({
-    user: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
+const PostsSchema = new Schema({
+    user:{
+        type: Schema.Types.ObjectId,
+        ref: 'users'
     },
     text: {
         type: String,
-        required: true,
+        required: true
     },
-    title: {
-        type: String,
-        required: true,
+    name: {
+        type: String
     },
-    date: {
+    avatar:{
+        type: String
+    },
+    likes:[
+        {
+            user:{
+                type: Schema.Types.ObjectId,
+                ref: 'users'
+            }
+        }
+    ],
+    comments:[
+        {
+            user:{
+                type: Schema.Types.ObjectId,
+                ref: 'users'
+            },
+            text:{
+                type: String,
+                required: true
+            },
+            name: {
+                type: String
+            },
+            avatar:{
+                type: String
+            },
+            date:{
+                type: Date,
+                default: Date.now
+            }
+        }
+    ],
+    date:{
         type: Date,
-        default: Date.now,
-    },
-    likes: [{
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
-        }
-    }],
-    dislikes: [{
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
-        }
-    }],
-    comments: [{
-        text: {
-            type: String,
-            required: [true, "Please add a comment!"],
-        },
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "users",
-        },
-        date: {
-            type: Date,
-            default: Date.now,
-        }
-    }]
+        default: Date.now
+    }
+
 });
-module.exports = mongoose.model("post", postSchema);
+
+module.exports = Post = mongoose.model('post',PostsSchema);

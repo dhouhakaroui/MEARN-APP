@@ -3,6 +3,7 @@ import {useDispatch,useSelector} from 'react-redux'
 import {loadUser} from '../actions/authActions'
 import SpinnerPage from './Spinner'
 import {Card,Container,Row ,Col,Image,ListGroup,ListGroupItem} from 'react-bootstrap'
+import NewPost from './newPost'
 function Profile() {
     const dispatch=useDispatch()
     const auth=useSelector(state=>state.authReducer)
@@ -35,7 +36,10 @@ function Profile() {
                         <Card.Link href="#">Edit Profile</Card.Link>
                         <Card.Link href="#">New Post</Card.Link>
                     </Card.Body>
-                </Card>                
+                </Card>  
+                <div>
+                   <NewPost user={auth.user}/> 
+                </div>              
             </div>
         }</div>}
         </div>

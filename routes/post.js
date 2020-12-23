@@ -17,6 +17,7 @@ router.post('/',auth,(req,res)=>{
 //get all post
 router.get('/',(req,res)=>{
     post.find()
+        .sort({date: -1})
     .then(post=>res.status(201).send(post))
     .catch((err)=>{
         console.error(err.message)
@@ -24,8 +25,19 @@ router.get('/',(req,res)=>{
     })
 })
 
+//get post by id
+router.get('/:post_id',(req,res)=>{
+    post.findOne({_id: req.params.post_id})
+        .then(post=>res.status(201).send(post))
+        .catch((err)=>{
+            console.error(err.message)
+            res.status(500).send({msg:'server error'})
+    })
+})
+
+
 //delet post 
-router.delete('/delete/_id',auth,authAdmin,(req,res)=>{
+router.delete('/delete/:_id',auth,(req,res)=>{
     post.findOneAndDelete({_id:req.params._id,user:req.userId})
     .then(post=>res.status(201).send({msg:'post deleted'}))
     .catch((err)=>{
@@ -33,26 +45,40 @@ router.delete('/delete/_id',auth,authAdmin,(req,res)=>{
         res.status(500).send({msg:'server error'})
     })
 })
+
+//UPDATE POST
+
 //delet coment
-router.delete('/delete_comment/:id/:comment_id',auth,(req,res)=>{
-    const user = user.findById(req.user.id).select("-password");
-    const Post = post.findById(req.params.id);
+router.delete('/delete_comment/:post_id/:comment_id',auth,(req,res)=>{
+    const Post = post.findById(req.params.post_id);
     const comment = Post.comments.find((comment) => comment.id === req.params.comment_id );
     if (!comment)
         return res.status(404).json({ msg: "comment does not exist " });
-    if (!user.role) {
-        if (comment.user !== req.user.id) {
-            return res.status(401).json({ msg: "user not authorized " });
-        }
-    }
-    post.findByIdAndUpdate(req.params.id,{$pull: { comments: { _id: req.params.comment_id } }});
-        then(post=>res.status(201).send({msg:'comment deleted'}))
-    .catch((err)=>{
-        console.error(err.message)
-        res.status(500).send({msg:'server error'})
+    if (comment.user !== req.user.id) 
+        return res.status(401).json({ msg: "user not authorized " });
+    post.findByIdAndUpdate(req.params.post_id,{$pull: { comments: { _id: req.params.comment_id }}})
+        .then(post=>res.status(201).send({msg:'comment deleted'}))
+        .catch((err)=>{
+            console.error(err.message)
+            res.status(500).send({msg:'server error'})
     }) 
 })
 
+// update text post
+router.put('/:post_id',auth,(req,res)=>{
+    const Post = post.findById(req.params.post_id);
+    if (Post.user!==req.user.id){
+        return res.status(401).json({ msg: "user not authorized " });
+    }
+    post.findByIdAndUpdate(req.params.post_id, req.body)
+        .then(post=>res.status(201).send({msg:'post updeted'}))
+        .catch((err)=>{
+            console.error(err.message)
+            res.status(500).send({msg:'server error'})
+        })
+})
+
+//add comment
 
 
 module.exports=router
