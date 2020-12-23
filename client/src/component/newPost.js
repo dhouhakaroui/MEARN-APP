@@ -4,7 +4,7 @@ import { addPost } from '../actions/postActions'
 function NewPost(props) {
     const [post, setpost] = useState({
         user:props.user._id,
-        name:props.user.firstName,
+        name:props.user.firstName +" "+props.user.lastName ,
         text:"",
         comments:[]
     })
