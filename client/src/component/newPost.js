@@ -10,12 +10,16 @@ function NewPost(props) {
     })
     const dispatch=useDispatch()
     const handleChange=(e)=>{setpost({...post,text:e.target.value})}
+    const add=()=>{
+        dispatch(addPost(post))
+        setpost({...post,text:""})
+    }
     return (
         <div>          
-            <textarea type="text" onChange={handleChange}/>
-            <button onClick={()=>{dispatch(addPost(post))}}>submit</button>            
+            <textarea type="text" value={post.text} onChange={handleChange}/>
+            <button onClick={add}>submit</button>            
         </div>
     )
 }
 
-export default NewPost
+export default NewPost  
