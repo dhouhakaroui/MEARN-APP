@@ -8,11 +8,13 @@ function Register({history}) {
         firstName:'',
         lastName:'',
         age:0,
-        gender:'male',
+        gender:'',
+        avatar:"avatar.jpg",
         email:'',
         password:''
-    })        
-    const handleChange=(e)=>{setInfo({...Info,[e.target.name]:e.target.value})}
+    })   
+    const avat=(Info.gender==="male")? "man.PNG":"women.PNG"     
+    const handleChange=(e)=>{setInfo({...Info,avatar:avat,[e.target.name]:e.target.value})}
     const dispatch=useDispatch()
     const auth=useSelector(state=>state.authReducer)
     const [errors, setErrors] = useState(null)
@@ -34,6 +36,7 @@ function Register({history}) {
                         <MDBInput label="Your first name" icon="user" group type="text" name='firstName' onChange={handleChange} validate error="wrong" success="right" />
                         <MDBInput label="Your last name" icon="user" group type="text" name='lastName' onChange={handleChange} validate error="wrong" success="right" />
                         <Form.Control as="select" name='gender' onChange={handleChange}>
+                            <option value=''>choose gender </option>
                             <option value='male'>man</option>
                             <option value='female'>women</option>
                         </Form.Control>

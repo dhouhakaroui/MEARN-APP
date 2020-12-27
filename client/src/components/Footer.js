@@ -11,11 +11,13 @@ const Footer = () => {
                         <MDBIcon fab icon="google" className="white-text mr-4" /> 
                         <MDBIcon fab icon="linkedin" className="white-text mr-4" /> 
                         <MDBIcon fab icon="twitter" className="white-text mr-4" />
-                    </MDBBox>
+                        <MDBIcon fab icon="instagram" className="white-text mr-4" />
+                        <MDBIcon fab icon="facebook" className="white-text mr-4" />
+                    </MDBBox> 
                 </MDBContainer>
                 <div className="footer-copyright text-center py-3">
                     <MDBContainer fluid> &copy; {new Date().getFullYear()} Copyright
-                        <p> DEV_DIW by GO MY CODE Students...</p>
+                        <p> DEV_DIW  by  GO MY CODE Students...</p>
                     </MDBContainer>
                 </div>
             </MDBFooter>

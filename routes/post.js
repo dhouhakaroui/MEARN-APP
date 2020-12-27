@@ -26,11 +26,11 @@ router.get('/',(req,res)=>{
     })
 })
 
-//get post by id
-router.get('/:post_id',(req,res)=>{
-    post.findOne({_id: req.params.post_id})
+//get posts by user_id
+router.get('/posts/:user_id',(req,res)=>{
+    post.findOne({user: req.params.user_id})
         .then(post=>{
-            if(!post){ return  res.status(404).json({post: 'No Post found'});}
+            if(!post){ return  res.status(404).json({msg: 'No Post found'});}
             res.status(201).send(post)})
         .catch((err)=>{
             console.error(err.message)
@@ -38,6 +38,17 @@ router.get('/:post_id',(req,res)=>{
     })
 })
 
+//get post by id
+router.get('/:post_id',(req,res)=>{
+    post.findOne({_id: req.params.post_id})
+        .then(post=>{
+            if(!post){ return  res.status(404).json({msg: 'No Post found'});}
+            res.status(201).send(post)})
+        .catch((err)=>{
+            console.error(err.message)
+            res.status(500).send({msg:'server error'})
+    })
+})
 
 //delet post 
 router.delete('/delete/:_id',auth,(req,res)=>{
@@ -53,22 +64,6 @@ router.delete('/delete/:_id',auth,(req,res)=>{
 
 //UPDATE POST
 
-//delet coment
-router.delete('/delete_comment/:post_id/:comment_id',auth,(req,res)=>{
-    const Post = post.findById(req.params.post_id);
-    const comment = Post.comments.find((comment) => comment.id === req.params.comment_id );
-    if (!comment)
-        return res.status(404).json({ msg: "comment does not exist " });
-    if (comment.user !== req.user.id) 
-        return res.status(401).json({ msg: "user not authorized " });
-    post.findByIdAndUpdate(req.params.post_id,{$pull: { comments: { _id: req.params.comment_id }}})
-        .then(post=>res.status(201).send({msg:'comment deleted'}))
-        .catch((err)=>{
-            console.error(err.message)
-            res.status(500).send({msg:'server error'})
-    }) 
-})
-
 // update text post
 router.put('/:post_id',auth,(req,res)=>{
     const Post = post.findById(req.params.post_id);
@@ -83,7 +78,24 @@ router.put('/:post_id',auth,(req,res)=>{
         })
 })
 
+//like post
+//dislike post
 //add comment
-
+//update text comment
+//delet comment
+router.delete('/delete_comment/:post_id/:comment_id',auth,(req,res)=>{
+    const Post = post.findById(req.params.post_id);
+    const comment = Post.comments.find((comment) => comment.id === req.params.comment_id );
+    if (!comment)
+        return res.status(404).json({ msg: "comment does not exist " });
+    if (comment.user !== req.user.id) 
+        return res.status(401).json({ msg: "user not authorized " });
+    post.findByIdAndUpdate(req.params.post_id,{$pull: { comments: { _id: req.params.comment_id }}})
+        .then(post=>res.status(201).send({msg:'comment deleted'}))
+        .catch((err)=>{
+            console.error(err.message)
+            res.status(500).send({msg:'server error'})
+    }) 
+})
 
 module.exports=router

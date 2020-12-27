@@ -2,6 +2,7 @@ import React from 'react'
 import {Card,Container,Row ,Col,Image,ListGroup,ListGroupItem} from 'react-bootstrap'
 
 function ProfileCard({auth}) {
+    const src=auth.user.avatar||((auth.user.gender==="male")? "man.PNG":"women.PNG")
     return (
         <Card >
             <div style={{display:"flex"}}>
@@ -9,7 +10,7 @@ function ProfileCard({auth}) {
                 <Container>
                     <Row>
                         <Col xs={6} md={4}>
-                        <Image src="avatar.jpg " style={{width:"10rem"}}  roundedCircle />
+                        <Image src={src} style={{width:"10rem"}}  roundedCircle />
                         </Col>
                     </Row>
                 </Container>

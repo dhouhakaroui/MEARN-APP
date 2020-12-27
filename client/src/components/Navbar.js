@@ -29,17 +29,17 @@ const dispatch = useDispatch()
             </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>
-          <MDBNavItem>
-              <MDBNavLink to="/profile">profile</MDBNavLink>
+          <MDBNavItem active>
+              <MDBNavLink to="/profile">Profile</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/">
-                <MDBIcon fab icon="twitter" />
+                <MDBIcon fab icon="github" />
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/">
-                <MDBIcon fab icon="google-plus-g" />
+                <MDBIcon fab icon="google" />
               </MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>

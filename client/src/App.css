@@ -14,8 +14,7 @@ img {
 
 .landing {
   position: relative;
-  background: url("https://miro.medium.com/max/1094/1*MCn1VrXQznTi3JMtAIGK0g.jpeg")
-    no-repeat;
+  background: url("background.jpeg") no-repeat;
   background-size: cover;
   background-position: center;
   height: 100vh;
