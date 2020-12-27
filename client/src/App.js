@@ -2,31 +2,37 @@ import './App.css';
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import 'bootstrap-css-only/css/bootstrap.min.css';
 import 'mdbreact/dist/css/mdb.css';
-import {BrowserRouter as Router,Route,Switch } from 'react-router-dom'
-import Home from './component/Home'
-import Register from './component/Register'
-import Login from './component/Login'
-import Profile from './component/Profile'
-import Navbar from './component/Navbar'
+import {BrowserRouter as Router,Route,Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
-import Posts from './component/Posts';
-import Users from './component/Users';
-
-
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Register from './pages/Register';
+import Login from './pages/Login';
+import Posts from './pages/Posts';
+import Post from './pages/Post';
+import Users from './pages/Users';
+import User from './pages/User';
+import Profile from './pages/Profile';
+import EditProfile from './pages/EditProfile';
+import Footer from './components/Footer';
+import Landing from './pages/Landing';
 
 function App() {
   return (
     <Router>
       <Navbar/>
       <Switch>
-        <Route exact path='/' component={Home}/>
+        <Route exact path='/' component={Landing}/>
         <Route exact path='/register' component={Register}/>
         <Route exact path='/login' component={Login}/>
-        <Route exact path='/Allposts' component={Posts}/>
+        <PrivateRoute exact path='/posts' component={Posts}/>
+        <PrivateRoute exact path="/post/:postId" component={Post} />
         <Route exact path='/Users' component={Users}/>
+        <Route exact path='/User/:UserId' component={User}/>
         <PrivateRoute exact path='/profile' component={Profile}/>
-
+        <PrivateRoute exact path='/Editprofile' component={EditProfile}/>
       </Switch> 
+      <Footer/>
     </Router>
   );
 }

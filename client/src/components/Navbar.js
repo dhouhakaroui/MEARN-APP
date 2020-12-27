@@ -12,28 +12,26 @@ const auth=useSelector(state=>state.authReducer)
 const dispatch = useDispatch()
 
   return (
-    <div style={{margin:10}}>
+    <div style={{margin:10}} >
       <MDBNavbar color="default-color" dark expand="md">
-        <MDBNavbarBrand>
+        <MDBNavbarBrand><MDBNavLink to="/">
           <strong className="white-text">DEV_DIW</strong>
+        </MDBNavLink>         
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={open} navbar>
           <MDBNavbarNav left>
-            <MDBNavItem >
-              <MDBNavLink to="/">Home</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/Allposts">Posts</MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
+          <MDBNavItem>
               <MDBNavLink to="/Users">Users</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/profile">profile</MDBNavLink>
+              <MDBNavLink to="/posts">Posts</MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>
+          <MDBNavItem>
+              <MDBNavLink to="/profile">profile</MDBNavLink>
+            </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/">
                 <MDBIcon fab icon="twitter" />
