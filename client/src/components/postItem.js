@@ -2,10 +2,13 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import{MDBIcon } from 'mdbreact'
+import { deletePost } from '../actions/postActions'
 
 function PostItem({post}) {
     const auth=useSelector(state=>state.authReducer)
-    console.log(post)
+    const dispatch = useDispatch()
+    const datepost =new Date(post.date)
+    const date = datepost.toUTCString()
     return (
         <div className="card card-body mb-3">
         <div className="row">
@@ -15,7 +18,7 @@ function PostItem({post}) {
             <div className="col-md-10"> 
                 <h3 className="teal-text">{post.name}</h3>     
                 <p  >{post.text}</p>
-                {Date(post.date)}
+                {date}
                 <div className="d-flex">
                     <button type="button"  className="btn mr-1">
                         <span className="badge badge-light">{post.likes.length}</span>
@@ -31,7 +34,7 @@ function PostItem({post}) {
                         <button type="button" className="btn btn-light mr-1">
                             <MDBIcon  icon="edit" />
                         </button>
-                        <button type="button" className="btn btn-light mr-1">
+                        <button type="button" onClick={()=>dispatch(deletePost(post._id))} className="btn btn-light mr-1">
                             <MDBIcon icon="trash-alt" />
                         </button></div> : 
                     null}

@@ -8,7 +8,7 @@ function NewPost({user}) {
         user:user._id,
         name:user.firstName +" "+user.lastName ,
         text:"",
-        avatar:user.avatr||"avatar.jpg",
+        avatar:user.avatar||"avatar.jpg",
         comments:[]
     })
     const [errors, setErrors] = useState(null)
@@ -24,10 +24,10 @@ function NewPost({user}) {
                 Say Somthing...
             </div>  
             <div className="card-body">   
-                <form>
+                <form onSubmit={add}>
                     <input className="form-control" placeholder="Create a post" type="text" onFocus={()=>setErrors(null)} value={post.text} onChange={handleChange}/>
                     {errors&& <p>{errors.msg}</p>}
-                    <button onClick={add} className="btn text-white default-color-dark">submit</button> 
+                    <button type="submit" className="btn text-white default-color-dark">submit</button> 
                 </form> 
             </div>             
         </div>
