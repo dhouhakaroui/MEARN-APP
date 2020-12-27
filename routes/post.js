@@ -6,12 +6,13 @@ const post=require('../models/post')
 
 //add new post
 router.post('/',auth,(req,res)=>{
+    if (!req.body.text){return res.status(400).send({errors:[{msg:"post is empty!"}]})}
     let newPost =new post({...req.body,user:req.userId})
     newPost.save()
             .then(post=>res.status(201).send(post))
             .catch((err)=>{
                 console.error(err.message)
-                res.status(500).send({msg:'server error'})
+                res.status(500).send({msg:"server error"})
             })
 })
 //get all post
@@ -28,7 +29,9 @@ router.get('/',(req,res)=>{
 //get post by id
 router.get('/:post_id',(req,res)=>{
     post.findOne({_id: req.params.post_id})
-        .then(post=>res.status(201).send(post))
+        .then(post=>{
+            if(!post){ return  res.status(404).json({post: 'No Post found'});}
+            res.status(201).send(post)})
         .catch((err)=>{
             console.error(err.message)
             res.status(500).send({msg:'server error'})
@@ -39,7 +42,9 @@ router.get('/:post_id',(req,res)=>{
 //delet post 
 router.delete('/delete/:_id',auth,(req,res)=>{
     post.findOneAndDelete({_id:req.params._id,user:req.userId})
-    .then(post=>res.status(201).send({msg:'post deleted'}))
+    .then(post=>{
+        if(!post){res.status(401).send({msg:"User not authorised"})}
+        res.status(201).send({msg:'post deleted'})})
     .catch((err)=>{
         console.error(err.message)
         res.status(500).send({msg:'server error'})

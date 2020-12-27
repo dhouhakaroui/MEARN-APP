@@ -12,13 +12,13 @@ router.get('/',authMiddleware,(req,res)=>{
     user.findById(req.userId).select('-password -__v')
         .then(user=>{
             if(!user){
-                return res.status(404).json({msg:'user not found'})
+                return res.status(404).json({errors:[{msg:'user not found'}]})
             }
             res.status(200).json(user)
         })
         .catch((err)=>{
             console.error(err.message)
-            res.status(500).send({msg:'server error'})
+            res.status(500).send({errors:[{msg:'server error'}]})
         })
 })
 
