@@ -21,11 +21,11 @@ const dispatch = useDispatch()
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={open} navbar>
           <MDBNavbarNav left>
-          <MDBNavItem>
-              <MDBNavLink to="/Users">Users</MDBNavLink>
+          <MDBNavItem >
+              <MDBNavLink to="/Users"><i class="fas fa-users"/>Users</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/posts">Posts</MDBNavLink>
+              <MDBNavLink to="/posts"><i class="fas fa-comments"/>Posts</MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>
           <MDBNavbarNav right>

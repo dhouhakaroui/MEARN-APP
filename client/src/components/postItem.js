@@ -26,9 +26,11 @@ function PostItem({post}) {
                         <i class="fas fa-heart"></i>}
                     </button>
                     {post._id ?
-                    <Link to={`/post/${post._id}`} className="btn text-white default-color mr-1">
-                        <span className="badge badge-light">{post.likes.length}</span>
-                        Comments
+                    <Link to={`/post/${post._id}`} >
+                        <button className="btn text-white default-color mr-1">
+                            <span className="badge badge-light">{post.comments.length}</span>
+                            Comments 
+                        </button>
                     </Link> :null}
                     {post.user === auth.user._id ? <div  >
                         <button type="button" className="btn btn-light mr-1">

@@ -14,7 +14,8 @@ function NewPost({user}) {
     const [errors, setErrors] = useState(null)
     useEffect(() => {if (posts.errors){ setErrors(posts.errors)}},[posts.errors])    
     const handleChange=(e)=>{setpost({...post,text:e.target.value})}
-    const add=()=>{
+    const add=(e)=>{
+        e.preventDefault()
         dispatch(addPost(post))
         setpost({...post,text:""})
     }
