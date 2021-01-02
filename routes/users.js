@@ -6,17 +6,15 @@ const user=require('../models/user')
 
 //get all users
 router.get('/allUsers',(req,res)=>{
-    user.findById().select('-password -__v')
+    user.find().select('-password -__v')
     .then(users=>res.status(201).send(users))
     .catch((err)=>{
         console.error(err.message)
         res.status(500).send({msg:'server error'})
     })
 })
-
-
 //delete user
-router.delete('/delete/:id',authAdmin,(req,res)=>{
+router.delete('/delete/:id',auth,(req,res)=>{
     user.findOneAndDelete({ _id: req.params.id })
     .then(user=>res.status(201).send({msg:'user deleted'}))
     .catch((err)=>{
@@ -26,7 +24,7 @@ router.delete('/delete/:id',authAdmin,(req,res)=>{
 })
 // get user by id
 router.get('/:user_id',(req,res)=>{
-    user.findById({ _id: req.params.id }).select('-password -__v')
+    user.findById({ _id: req.params.user_id }).select('-password -__v')
     .then(users=>res.status(201).send(users))
     .catch((err)=>{
         console.error(err.message)
@@ -41,7 +39,6 @@ router.put('/update',auth,(req,res)=>{
         console.error(err.message)
         res.status(500).send({msg:'server error'})
     })
-}
-)
+})
 
 module.exports=router

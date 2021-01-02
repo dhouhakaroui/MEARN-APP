@@ -1,12 +1,9 @@
 import React from "react";
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBMask, MDBView } from "mdbreact";
+import { MDBContainer, MDBCard, MDBCardBody, MDBMask, MDBView } from "mdbreact";
 
 const BlogPage = () => {
   return (
-    <MDBCard className="my-5 px-5 pb-5">
-      <MDBCardBody>
-        <MDBRow>
-          <MDBCol md="12">
+    <MDBCard className="px-5">
             <MDBCard reverse>
               <MDBView hover cascade waves>
                 <img
@@ -31,9 +28,6 @@ const BlogPage = () => {
               Concretely, the blog therefore allows certain Internet users, bloggers, to share their opinions, comments, moods, points of view on the news, by writing articles, posting photos, etc.
               </p>
             </MDBContainer>
-          </MDBCol>
-        </MDBRow>
-      </MDBCardBody>
     </MDBCard>
   );
 }

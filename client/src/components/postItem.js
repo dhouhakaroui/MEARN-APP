@@ -17,30 +17,26 @@ function PostItem({post}) {
             </div>
             <div className="col-md-10"> 
                 <h3 className="teal-text">{post.name}</h3>     
-                <p  >{post.text}</p>
+                <p>{post.text}</p>
                 {date}
                 <div className="d-flex">
                     <button type="button"  className="btn mr-1">
                         <span className="badge badge-light">{post.likes.length}</span>
-                        {<i class="far fa-heart"></i>||
-                        <i class="fas fa-heart"></i>}
+                        {<i class="far fa-heart"/>||<i class="fas fa-heart"/>}
                     </button>
-                    {post._id ?
                     <Link to={`/post/${post._id}`} >
                         <button className="btn text-white default-color mr-1">
                             <span className="badge badge-light">{post.comments.length}</span>
                             Comments 
                         </button>
-                    </Link> :null}
-                    {post.user === auth.user._id ? <div  >
+                    </Link>
+                    {post.user === auth.user._id ? <div>
                         <button type="button" className="btn btn-light mr-1">
                             <MDBIcon  icon="edit" />
                         </button>
                         <button type="button" onClick={()=>dispatch(deletePost(post._id))} className="btn btn-light mr-1">
                             <MDBIcon icon="trash-alt" />
-                        </button></div> : 
-                    null}
-
+                        </button></div> : null}
                 </div>
             </div>
         </div>

@@ -1,7 +1,6 @@
 import axios from 'axios'
-import setToken from '../setToken'
+import setToken from './setToken'
 import {ADD_POST, GET_POSTS,GET_POST, DELETE_POST, GET_ERRORS} from './types'
-
 
 // new post
 export const addPost = (postData) => dispatch => {
@@ -27,7 +26,7 @@ export const getPosts = () => dispatch => {
             payload: res.data
         }))
         .catch(err => dispatch({
-            type: GET_POSTS,
+            type: GET_ERRORS,
             payload: null
         }))
 }
@@ -41,7 +40,7 @@ export const getPost = (id) => dispatch => {
             payload: res.data
         }))
         .catch(err => dispatch({
-            type: GET_POST,
+            type: GET_ERRORS,
             payload: null
         }))
 }

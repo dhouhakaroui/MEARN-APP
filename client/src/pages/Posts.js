@@ -18,7 +18,7 @@ function Posts() {
                     <div className="col-md-12">
                         {!posts ?<Spinner/>: <div>
                             {user ? <NewPost user={user}/>:null }
-                            {posts.map((el,i) => <PostItem  post={el}/>)}
+                            {posts.map(el => <PostItem key={el._id} post={el}/>)}
                         </div> }
                     </div>
                 </div>

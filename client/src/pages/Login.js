@@ -1,6 +1,6 @@
 import {React ,useState,useEffect} from 'react'
 import {useDispatch,useSelector} from 'react-redux'
-import {loginUser} from '../actions/authActions'
+import {loadUser, loginUser} from '../actions/authActions'
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 function Login({history}) {
     const [info,setInfo]= useState({
@@ -13,10 +13,11 @@ function Login({history}) {
     const login=e=>{
         e.preventDefault()
         dispatch(loginUser(info))
+        dispatch(loadUser())
     }
     const auth=useSelector(state=>state.authReducer)
     useEffect(() => {
-        if (auth.isAuth){ history.push('/profile')}
+        if (auth.isAuth){ history.push('/posts')}
         if (auth.errors){ setErrors(auth.errors)}
     }, [auth.isAuth,auth.errors])
     return (
@@ -31,7 +32,7 @@ function Login({history}) {
                             success="right"  name='email' onChange={handleChange} onFocus={()=>setErrors(null)}/>
                         <MDBInput label="Type your password" icon="lock" group type="password" name='password' onChange={handleChange} validate />
                         </div>
-                        {errors && errors.map(el=><p>{el.msg}</p>)}
+                        {!errors?null:errors.map(el=><p>{el.msg}</p>)}
                         <div className="text-center">
                         <MDBBtn type='submit'>Login</MDBBtn>
                         </div>

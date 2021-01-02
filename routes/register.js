@@ -1,9 +1,9 @@
 const express = require('express')
 const router= express.Router()
-const {body,validationResult}=require('express-validator')
-const user=require('../models/user')
 const bcrypt= require('bcryptjs')
 const jwt = require('jsonwebtoken')
+const {body,validationResult}=require('express-validator')
+const user=require('../models/user')
 require('dotenv').config()
 
 //register user
@@ -34,7 +34,6 @@ router.post('/',[
                         if(err)throw err
                         res.send({token})
                     })
-
                 })
             })
         })
