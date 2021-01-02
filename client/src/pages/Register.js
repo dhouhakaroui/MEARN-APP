@@ -13,7 +13,7 @@ function Register({history}) {
         email:'',
         password:''
     })   
-    const avat=(Info.gender==="male")? "man.PNG":"women.PNG"     
+    const avat=(Info.gender==="male")? "man.PNG":(Info.gender==="female")?"women.PNG":"avatar.jpg"   
     const handleChange=(e)=>{setInfo({...Info,avatar:avat,[e.target.name]:e.target.value})}
     const dispatch=useDispatch()
     const auth=useSelector(state=>state.authReducer)
@@ -34,17 +34,16 @@ function Register({history}) {
                     <form onSubmit={registerNow} onFocus={()=>setErrors(null)}>
                         <div className="grey-text">
                         <MDBInput label="Your first name" icon="user" group type="text" name='firstName' onChange={handleChange} validate error="wrong" success="right" />
-                        <MDBInput label="Your last name" icon="user" group type="text" name='lastName' onChange={handleChange} validate error="wrong" success="right" />
+                        <MDBInput label="Your last name" icon="user" group type="text" name='lastName' onChange={handleChange} validate error="wrong" success="right" />                        
                         <Form.Control as="select" name='gender' onChange={handleChange}>
                             <option value=''>choose gender </option>
                             <option value='male'>man</option>
                             <option value='female'>women</option>
-                        </Form.Control>
-                        <MDBInput label="Your age" icon="calendar" group type="text" name='age' onChange={handleChange} validate error="wrong" success="right" />
+                        </Form.Control> 
                         <MDBInput label="Type your email" icon="envelope" group type="email" validate error="wrong" success="right"  name='email' onChange={handleChange} />
                         <MDBInput label="Type your password" icon="lock" group type="password" name='password' onChange={handleChange} validate />
                         </div>
-                        {errors && errors.map(el=><p>{el.msg}</p>)}
+                        {!errors?null:errors.map(el=><p>{el.msg}</p>)}
                         <div className="text-center">
                         <MDBBtn type='submit'>Register</MDBBtn>
                         </div>

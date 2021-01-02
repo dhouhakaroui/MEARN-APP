@@ -1,10 +1,10 @@
 const express=require('express')
 const router=express.Router()
-const authMiddleware=require('../middleware/auth')
-const user=require('../models/user')
-const {body,validationResult}=require('express-validator')
 const bcrypt=require('bcryptjs')
 const jwt=require('jsonwebtoken')
+const {body,validationResult}=require('express-validator')
+const authMiddleware=require('../middleware/auth')
+const user=require('../models/user')
 require('dotenv').config()
 
 //load connected user

@@ -1,5 +1,5 @@
 import React from "react";
-import spinner from './spinner.gif'
+import spinner from '../res/spinner.gif'
 const Spinner = () => {
   return (
     <>
@@ -7,6 +7,7 @@ const Spinner = () => {
         style={{width: '200px', margin: 'auto', display: 'block'}}
         alt="Loading..."
       />
+      <h2 style={{textAlign:"center"}}>loading...</h2>
     </>
   );
 }

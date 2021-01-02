@@ -1,6 +1,6 @@
 import {REGISTER_SUCCESS,REGISTER_FAIL,LOGIN_SUCCESS,LOGIN_FAIL,LOAD_USER_SUCCESS,LOAD_USER_FAIL,LOGOUT} from './types'
 import axios from 'axios'
-import setToken from '../setToken'
+import setToken from './setToken'
 
 export const registerUser=info=> dispatch=>{
     axios.post('/register',info)

@@ -79,6 +79,14 @@ router.put('/:post_id',auth,(req,res)=>{
 })
 
 //like post
+router.put('/like/:post_id',auth,(req,res)=>{
+    const Post = post.findById(req.params.post_id);
+    if(Post.likes.find(like => like.user.toString() === req.user.id)){
+        return res.status(400).json({msg: 'You haven\'t liked this post'})
+    }
+
+
+})
 //dislike post
 //add comment
 //update text comment

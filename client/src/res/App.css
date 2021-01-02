@@ -1,12 +1,17 @@
-.App {
-  text-align: center;
-}
+/* .App .login {
+  background: rgb(34, 193, 195);
+  background: linear-gradient(
+    0deg,
+    rgba(253, 187, 45, 1) 0%,
+    rgba(34, 193, 195, 1) 100%
+  );
+} */
 .login {
   position: relative;
   width: 70%;
-  left: 50%;
-  top: 50%;
-  transform: translate(-30%, 0%);
+  left: 20%;
+  top: 20%;
+  transform: translate(10%, 0%);
 }
 img {
   width: 100%;
