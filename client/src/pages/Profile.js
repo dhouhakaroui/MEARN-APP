@@ -14,9 +14,8 @@ function Profile() {
         <div > {!auth?<Spinner/>:
             <div>{auth.user&& 
                 <div  style={{margin:"1em"}}>
-                    <ProfileCard auth={auth} />
+                    <ProfileCard user={auth.user}/>
                     <NewPost user={auth.user}/>  
-
                 </div>
             }</div>}
         </div>

@@ -2,6 +2,7 @@ import {REGISTER_SUCCESS,REGISTER_FAIL,LOGIN_SUCCESS,LOGIN_FAIL,LOAD_USER_SUCCES
 import axios from 'axios'
 import setToken from './setToken'
 
+//register
 export const registerUser=info=> dispatch=>{
     axios.post('/register',info)
         .then(res=>dispatch({
@@ -13,7 +14,7 @@ export const registerUser=info=> dispatch=>{
             payload:err.response.data.errors
         }))
 }
-
+// get profile
 export const loadUser=()=> dispatch=>{
     setToken()
     axios.get('/login')
@@ -26,6 +27,8 @@ export const loadUser=()=> dispatch=>{
             payload:err.response.data.msg
         }))
 }
+
+//login 
 export const loginUser =data=>dispatch=>{
     axios.post("/login",data)
         .then(res=>dispatch({
@@ -37,6 +40,18 @@ export const loginUser =data=>dispatch=>{
             payload:err.response.data.errors
         }))
 }
+//log out
 export const logoutUser=()=>dispatch=>{
     dispatch({type:LOGOUT})
+}
+
+//update info 
+export const updateInfo=(info)=>dispatch=>{
+    setToken()
+    axios.put('/users/update',info)
+    .then(res => dispatch(loadUser()))
+    .catch(err => dispatch({
+        type: LOAD_USER_FAIL,
+        payload: err.response.data
+    }))
 }

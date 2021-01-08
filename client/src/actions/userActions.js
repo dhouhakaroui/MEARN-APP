@@ -1,5 +1,7 @@
 import axios from 'axios'
 import {GET_USERS,GET_USER,DELETE_USER,GET_ERRORS} from '../actions/types'
+import { loadUser } from './authActions'
+import setToken from './setToken'
 
 //Get users
 export const getusers = () => dispatch => {
