@@ -14,7 +14,7 @@ const dispatch = useDispatch()
   return (
     <div style={{margin:10}} >
       <MDBNavbar color="default-color" dark expand="md">
-        <MDBNavbarBrand><MDBNavLink to="/">
+        <MDBNavbarBrand><MDBNavLink to="#">
           <strong className="white-text">DEV_DIW</strong>
         </MDBNavLink>         
         </MDBNavbarBrand>

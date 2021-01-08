@@ -1,14 +1,28 @@
-import React from 'react'
+import {React ,useState}from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import{MDBIcon } from 'mdbreact'
-import { deletePost } from '../actions/postActions'
+import { deletePost,updatePost,addLike,removeLike } from '../actions/postActions'
 
 function PostItem({post}) {
     const auth=useSelector(state=>state.authReducer)
     const dispatch = useDispatch()
     const datepost =new Date(post.date)
     const date = datepost.toUTCString()
+    const [edit, setedit] = useState(false)
+    const [input, setinput] = useState(post.text)
+    const update=()=>{
+        setedit(!edit);
+        dispatch(updatePost({...post,text:input}))}
+    const findUserLikes=(likes)=>{
+        console.log(likes.length)
+        if(likes.length > 0){
+            if(likes.filter(like => like.user === auth.user._id).length > 0){return true;}
+            else{ return false;}}
+        else{return false;}}
+    const likepost=()=>{        
+        findUserLikes(post.likes)? dispatch(removeLike(post._id)):dispatch(addLike(post._id))
+    }
     return (
         <div className="card card-body mb-3">
         <div className="row">
@@ -16,22 +30,24 @@ function PostItem({post}) {
                 <img className="rounded float-left" src={post.avatar} alt="" width="100rem"/> 
             </div>
             <div className="col-md-10"> 
-                <h3 className="teal-text">{post.name}</h3>     
-                <p>{post.text}</p>
+                <h3 className="teal-text">{post.name}</h3>  
+                {!edit ?  
+                <p>{post.text}</p>:
+                <input type="text" value={input} onChange={e=>setinput(e.target.value)}/>}
                 {date}
-                <div className="d-flex">
-                    <button type="button"  className="btn mr-1">
-                        <span className="badge badge-light">{post.likes.length}</span>
-                        {<i class="far fa-heart"/>||<i class="fas fa-heart"/>}
-                    </button>
-                    <Link to={`/post/${post._id}`} >
+                <div className="d-flex"> 
+                    <button type="button"  className="btn mr-1" onClick={()=>likepost()}>
+                        {!(findUserLikes(post.likes))?<i class="far fa-heart"/> :<i class="fas fa-heart" style={{color:"red"}}/>}  
+                        <span className="badge badge-light" >{post.likes.length} </span> likes                                              
+                    </button> 
+                    <Link to={`/post/${post._id}`}>
                         <button className="btn text-white default-color mr-1">
-                            <span className="badge badge-light">{post.comments.length}</span>
-                            Comments 
+                            <i className="far fa-comments"/>
+                            <span className="badge badge-light"> { post.comments.length}</span> Comments  
                         </button>
                     </Link>
                     {post.user === auth.user._id ? <div>
-                        <button type="button" className="btn btn-light mr-1">
+                        <button type="button" className="btn btn-light mr-1" onClick={update}>
                             <MDBIcon  icon="edit" />
                         </button>
                         <button type="button" onClick={()=>dispatch(deletePost(post._id))} className="btn btn-light mr-1">

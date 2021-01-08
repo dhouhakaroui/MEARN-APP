@@ -9,9 +9,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  age:{
-      type:Number
-  },
   gender:{
     type: String
   },
@@ -34,6 +31,42 @@ const userSchema = new mongoose.Schema({
   date:{
     type: Date,
     default:Date.now
+  },
+  age:{
+    type:Number
+  },
+  website:{
+    type: String
+  },
+  twitter:{
+    type: String
+  },
+  facebook:{
+    type: String
+  },
+  instagram :{
+    type: String
+  },
+  linkedin:{
+    type: String
+  },
+  github:{
+    type:String
+  },
+  phone:{
+    type:Number
+  },
+  status:{
+    type:String
+  },
+  address:{
+    type:String
+  },
+  company:{
+    type:String
+  },
+  bio:{
+    type:String
   }
 });  
 module.exports= mongoose.model('user',userSchema)

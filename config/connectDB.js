@@ -7,7 +7,8 @@ require("dotenv").config();
 //  connect to database
 const url=process.env.MONGO_URI
 const connectDB=()=>{
-    mongoose.set('useCreateIndex', true)    
+    mongoose.set('useCreateIndex', true); 
+    mongoose.set('useFindAndModify', false);   
     mongoose.connect(url,{ useNewUrlParser: true,useUnifiedTopology: true },(err) => {
         if (err) console.log(err);
         else console.log("database connected");
