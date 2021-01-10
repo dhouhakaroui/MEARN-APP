@@ -4,7 +4,7 @@ import { MDBBox, MDBContainer, MDBFooter, MDBIcon } from "mdbreact";
 const Footer = () => {
     return (
         <div style={{margin:10}}>
-            <MDBFooter  className="default-color font-small  mt-4">
+            <MDBFooter  className="default-color-dark font-small  mt-4">
                 <MDBContainer fluid  className="p-4">
                     <MDBBox display="flex" justifyContent="center">
                         <MDBIcon fab icon="github" className="white-text mr-4"  />

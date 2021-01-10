@@ -11,8 +11,8 @@ function Users() {
     useEffect(() => {dispatch(getusers())}, [])
     return (
         <div> {!users? <Spinner/>:     
-            <div class="container">
-                <div class="row">                    
+            <div className="container">
+                <div className="row">                    
                     {users.map(el=><UserItem user={el} />)}                           
                 </div>
             </div>} 

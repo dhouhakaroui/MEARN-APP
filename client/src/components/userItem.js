@@ -8,26 +8,26 @@ function UserItem({user}) {
     const dateuser =new Date(user.date)
     const date = dateuser.toUTCString()
     return (      
-      <div class="col-12 col-sm-6 col-md-4 col-lg-3">       
-        <div class="our-team">
+      <div className="col-12 col-sm-6 col-md-4 col-lg-3">       
+        <div className="our-team">
           <Link to={`/User/${user._id}`}>
-            <div class="picture">
-              <img class="img-fluid" src={user.avatar}/>
+            <div className="picture">
+              <img className="img-fluid" src={user.avatar}/>
             </div>
           </Link>
-          <div class="team-content">
-            <h3 class="name">{user.firstName +' ' +user.lastName}</h3>
-            <h4 class="title">{date}</h4>
+          <div className="team-content">
+            <h3 className="name">{user.firstName +' ' +user.lastName}</h3>
+            <h4 className="title">{date}</h4>
           </div>
           {(!auth.isAuth || !auth.user.role)?null:
           <div onClick={()=>dispatch(deleteuser(user._id))}>
-            <i class="fas fa-user-times" style={{color:"red" }}/>
+            <i className="fas fa-user-times" style={{color:"red" }}/>
           </div>}
-          <ul class="social">
-            <li><i class="fab fa-facebook"/></li>
-            <li><i class="fab fa-instagram"/></li>
-            <li><i class="fab fa-linkedin"/></li>
-            <li><i class="fab fa-github"/></li>
+          <ul className="social">
+            <li><i className="fab fa-facebook"/></li>
+            <li><i className="fab fa-instagram"/></li>
+            <li><i className="fab fa-linkedin"/></li>
+            <li><i className="fab fa-github"/></li>
           </ul>
         </div>
       </div>

@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 function Landing({history}) {
     const auth=useSelector(state=>state.authReducer)
-    useEffect(() => {if(auth.isAuth) { history.push('/profile')}}, [auth.isAuth])
+    useEffect(() => {if(auth.isAuth) { history.push('/posts')}}, [auth.isAuth])
     return (
         <div className="landing">
             <div className="dark-overlay landing-inner text-default">

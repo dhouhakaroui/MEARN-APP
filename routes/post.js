@@ -28,7 +28,7 @@ router.get('/',(req,res)=>{
 
 //get posts by user_id
 router.get('/posts/:user_id',(req,res)=>{
-    post.findOne({user: req.params.user_id})
+    post.find({user: req.params.user_id})
         .then(post=>{
             if(!post){ return  res.status(404).json({msg: 'No Post found'});}
             res.status(201).send(post)})
