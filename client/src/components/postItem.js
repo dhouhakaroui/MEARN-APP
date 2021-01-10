@@ -41,7 +41,7 @@ function PostItem({post}) {
                         <span className="badge badge-light" >{post.likes.length} </span> likes                                              
                     </button> 
                     <Link to={`/post/${post._id}`}>
-                        <button className="btn text-white default-color mr-1">
+                        <button type="button" className="btn text-white default-color mr-1">
                             <i className="far fa-comments"/>
                             <span className="badge badge-light"> { post.comments.length}</span> Comments  
                         </button>

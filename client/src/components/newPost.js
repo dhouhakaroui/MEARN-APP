@@ -20,15 +20,15 @@ function NewPost({user}) {
         setpost({...post,text:""})
     }
     return (
-        <div class="card" style={{border:"2px solid #aa66cc"}}>  
-            <div className="card-header text-white secondary-color">
+        <div class="card" style={{border:"2px solid #2BBBAD"}}>  
+            <div className="card-header text-white default-color">
                 Say Somthing...
             </div>  
             <div className="card-body">   
                 <form onSubmit={add}>
                     <textarea className="form-control" placeholder="Create a post" type="text" onFocus={()=>setErrors(null)} value={post.text} onChange={handleChange}/>
                     {errors&& <div onClick={alert(errors.msg)}  ></div> }
-                    <button type="submit" className="btn purple-text">submit</button> 
+                    <button type="submit" className="btn teal-text">submit</button> 
                 </form> 
             </div>             
         </div>

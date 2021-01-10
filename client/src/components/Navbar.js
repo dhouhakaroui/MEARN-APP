@@ -13,25 +13,27 @@ const dispatch = useDispatch()
 
   return (
     <div style={{margin:10}} >
-      <MDBNavbar color="default-color" dark expand="md">
-        <MDBNavbarBrand><MDBNavLink to="#">
-          <strong className="white-text">DEV_DIW</strong>
+      <MDBNavbar color="default-color-dark" dark expand="md">
+        <MDBNavbarBrand><MDBNavLink to="/">
+          <img src="diw.png" alt="DEV_DIW"/>
         </MDBNavLink>         
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={open} navbar>
           <MDBNavbarNav left>
           <MDBNavItem >
-              <MDBNavLink to="/Users"><i class="fas fa-users"/>Users</MDBNavLink>
+              <MDBNavLink to="/Users"><i className="fas fa-users"/>Users</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/posts"><i class="fas fa-comments"/>Posts</MDBNavLink>
+              <MDBNavLink to="/posts"><i className="fas fa-comments"/>Posts</MDBNavLink>
             </MDBNavItem>
+            {(auth.isAuth )?
+            <MDBNavItem active>
+              <MDBNavLink to="/profile"><i className="fas fa-user"/>Profile</MDBNavLink>
+            </MDBNavItem>
+            :null} 
           </MDBNavbarNav>
           <MDBNavbarNav right>
-          <MDBNavItem active>
-              <MDBNavLink to="/profile">Profile</MDBNavLink>
-            </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink className="waves-effect waves-light" to="/">
                 <MDBIcon fab icon="github" />
