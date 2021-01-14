@@ -21,12 +21,12 @@ function UserItem({user}) {
           </div>
           {(!auth.isAuth || !auth.user.role)?null:
           <div>
-          <div onClick={()=>dispatch(deleteuser(user._id))}>
-            <i className="fas fa-user-times" style={{color:"red" }}/>
-          </div>
-          <div  onClick={()=>dispatch(addAdmin(user._id))} > 
-            <i className="fas fa-user-plus" style={{color:"blue" }}/>
-          </div>
+            <div onClick={()=>dispatch(deleteuser(user._id))}>
+              <i className="fas fa-user-times" style={{color:"red" }}/>
+            </div>
+            <div  onClick={()=>dispatch(addAdmin(user._id))} > 
+              <i className="fas fa-user-plus" style={{color:"blue" }}/>
+            </div>
           </div>}
           <ul className="social">
             <li><i className="fab fa-facebook"/></li>

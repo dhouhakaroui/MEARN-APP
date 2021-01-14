@@ -17,10 +17,15 @@ function CommentItem({post,comment}) {
     }
     return (
         <div  style={{border:"2px solid #2BBBAD",display:"flex",padding:"20px"}}>
-            <img src={comment.avatar} style={{width:"20%"}} alt=""/>
+            {(!auth.isAuth || !auth.user.role)?null:
+            <div onClick={()=>dispatch(deleteComment(post._id,comment._id))}>
+                <i className="fas fa-times" style={{color:"red" }}/>
+            </div>}
+            <img src={process.env.PUBLIC_URL +"/"+comment.avatar} style={{width:"20%",height:"80%"}}/>
             <div>
                 <h3>{comment.name}</h3>
-                {!edit ?  <p>{comment.text}</p> :
+                {!edit ?  
+                <h6>{comment.text}</h6> :
                 <input type="text" value={input} onChange={e=>setinput(e.target.value)}/>
                 }
                 {date}
@@ -32,7 +37,7 @@ function CommentItem({post,comment}) {
                     <button type="button" onClick={()=>dispatch(deleteComment(post._id,comment._id))} className="btn btn-light mr-1">
                         <MDBIcon icon="trash-alt" />
                     </button>
-                </div>: null}
+                </div>: null}                
             </div> 
         </div>
     )

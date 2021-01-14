@@ -30,7 +30,7 @@ function App() {
         <PrivateRoute exact path='/posts' component={Posts}/>
         <PrivateRoute exact path="/post/:postId" component={Post} />
         <Route exact path='/Users' component={Users}/>
-        <PrivateRoute exact path='/User/:UserId' component={User}/>
+        <Route exact path='/User/:UserId' component={User}/>
         <PrivateRoute exact path='/profile' component={Profile}/>
         <PrivateRoute exact path='/Editprofile' component={EditProfile}/>
       </Switch> 

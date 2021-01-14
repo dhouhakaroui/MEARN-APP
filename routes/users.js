@@ -6,7 +6,7 @@ const user=require('../models/user')
 
 //get all users
 router.get('/allUsers',(req,res)=>{
-    user.find().select('-password -__v')
+    user.find().select('-password -__v').sort({date: -1})
     .then(users=>res.status(201).send(users))
     .catch((err)=>{
         console.error(err.message)

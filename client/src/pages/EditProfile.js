@@ -18,7 +18,7 @@ function EditProfile({history}) {
 
     return (
         <div style={{padding:"20px",margin:"20px", border:"2px solid #2BBBAD",borderRadius:"5px"}}>
-            <form onSubmit={submit} className="formedit">
+        <form onSubmit={submit} className="formedit">
             <div>
                 {user.avatar&& <img src={user.avatar} alt="avatar" style={{width:"50%",borderRadius: "50%"}}/>}
             </div>            
@@ -42,7 +42,7 @@ function EditProfile({history}) {
                 <option value='female'>women</option>
             </Form.Control>
             <MDBBtn type='submit'>Update Profile</MDBBtn>
-            </form>
+        </form>
         </div>
     )
 }

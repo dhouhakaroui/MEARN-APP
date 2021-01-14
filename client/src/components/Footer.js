@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
             </MDBFooter>
         </div>
-    );
+    )
 }
 
 export default Footer;
