@@ -50,7 +50,7 @@ function Register({history}) {
                     </form>
                     </MDBCol>
                 </MDBRow>
-                </MDBContainer>
+            </MDBContainer>
         </div>
     )
 }

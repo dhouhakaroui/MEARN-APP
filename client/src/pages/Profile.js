@@ -15,11 +15,13 @@ function Profile() {
     }, [])
     useEffect(() => {
         dispatch(getPostsUser(auth.user._id))
-    }, [posts])
+    }, [auth.user,posts])
     return (
         <div > 
-            {!auth?<Spinner/>:
-            <div>{auth.user&& 
+            {!auth?
+            <Spinner/>:
+            <div>
+                {auth.user ? 
                 <div  style={{margin:"1em",display:"flex"}}>
                     <ProfileCard user={auth.user}/>
                     <div style={{width:"60%",padding:"1em"}}>
@@ -28,10 +30,8 @@ function Profile() {
                             {posts ? posts.map(el => <PostItem key={el._id} post={el}/>):null}
                         </div> 
                     </div>
-                </div>
-            }
-            </div>
-            }
+                </div>:null }
+            </div> }            
         </div>
     )
 }

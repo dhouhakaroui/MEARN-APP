@@ -6,22 +6,22 @@ import { logoutUser } from '../actions/authActions'
 import {Link} from 'react-router-dom'
 const NavbarPage =()=> {
 const [open,setOpen]= useState(false)
-const toggleCollapse = () => {
-  setOpen(!open );}
+const toggleCollapse = () => {setOpen(!open );}
 const auth=useSelector(state=>state.authReducer)
 const dispatch = useDispatch()
 
   return (
     <div style={{margin:10}} >
       <MDBNavbar color="default-color-dark" dark expand="md">
-        <MDBNavbarBrand><MDBNavLink to="/">
-          <img src="diw.png" alt="DEV_DIW"/>
-        </MDBNavLink>         
+        <MDBNavbarBrand>
+          <MDBNavLink to="/">
+            <img src="diw.png" alt="DEV_DIW"/>
+          </MDBNavLink>         
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={open} navbar>
           <MDBNavbarNav left>
-          <MDBNavItem >
+            <MDBNavItem >
               <MDBNavLink to="/Users"><i className="fas fa-users"/>Users</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
@@ -51,22 +51,21 @@ const dispatch = useDispatch()
                 </MDBDropdownToggle>
                 {(auth.isAuth )?
                 <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="#!">
+                  <MDBDropdownItem href="/">
                     <Link to="/profile">profile</Link>
                   </MDBDropdownItem>          
-                  <MDBDropdownItem href="#!">
+                  <MDBDropdownItem href="/">
                     <Link onClick={()=>{dispatch(logoutUser())}}>log out</Link>
                   </MDBDropdownItem>
                 </MDBDropdownMenu>:
                 <MDBDropdownMenu className="dropdown-default">
-                <MDBDropdownItem href="#!">
-                  <Link to="/login">login</Link>
-                </MDBDropdownItem>          
-                <MDBDropdownItem href="#!"  >
-                  <Link to="/register">register</Link>
-                </MDBDropdownItem>
-              </MDBDropdownMenu>
-                }
+                  <MDBDropdownItem href="/">
+                    <Link to="/login">login</Link>
+                  </MDBDropdownItem>          
+                  <MDBDropdownItem href="#!"  >
+                    <Link to="/register">register</Link>
+                  </MDBDropdownItem>
+                </MDBDropdownMenu>}
               </MDBDropdown>
             </MDBNavItem>
           </MDBNavbarNav>

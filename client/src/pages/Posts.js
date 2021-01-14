@@ -8,15 +8,16 @@ import Spinner from '../components/Spinner'
 
 function Posts() {
     const posts=useSelector(state=>state.postReducer)
-    const user=useSelector(state=>state.authReducer.user)
+    const user=useSelector(state=>state.authReducer).user
     const dispatch = useDispatch()
-    useEffect(() => {dispatch(getPosts())}, [])
+    useEffect(() => {dispatch(getPosts())}, [posts])
     return (
         <div className="feed">
             <div className="container">
                 <div className="row">
                     <div className="col-md-12">
-                        {!posts ? <Spinner/>: 
+                        {!posts ? 
+                        <Spinner/>: 
                         <div>
                             {user ? <NewPost user={user}/>:null }
                             {posts.posts ?posts.posts.map(el => <PostItem key={el._id} post={el}/>):null}

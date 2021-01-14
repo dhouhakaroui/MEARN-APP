@@ -20,10 +20,11 @@ function NewPost({user,postId}) {
         setcomment({...comment,text:""})
     }
     return (
-        <div class="card" style={{border:"2px solid #2BBBAD"}}>    
+        <div className="card" className="mb-3" style={{border:"2px solid #2BBBAD",borderRadius:"10px"}}>    
             <div className="card-body">   
                 <form onSubmit={add}>
-                    <textarea className="form-control" placeholder="Create a comment..." type="text" onFocus={()=>setErrors(null)} value={comment.text} onChange={handleChange}/>
+                    <textarea className="form-control" placeholder="Create a comment..." type="text" 
+                        onFocus={()=>setErrors(null)} value={comment.text} onChange={handleChange}/>
                     <MDBBtn type="submit">submit</MDBBtn> 
                 </form> 
             </div>             

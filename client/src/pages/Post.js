@@ -14,7 +14,8 @@ function Post({match}) {
     
     return (
         <div>
-            {!post ?<Spinner/>:           
+            {!post ?
+            <Spinner/>:           
             <div className="feed">
                 <div className="container">
                     <div className="row">

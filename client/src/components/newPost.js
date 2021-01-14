@@ -25,7 +25,8 @@ function NewPost({user}) {
             </div>  
             <div className="card-body">   
                 <form onSubmit={add}>
-                    <textarea className="form-control" placeholder="Create a post" type="text" onFocus={()=>setErrors(null)} value={post.text} onChange={handleChange}/>
+                    <textarea className="form-control" placeholder="Create a post" type="text" 
+                        onFocus={()=>setErrors(null)} value={post.text} onChange={handleChange}/>
                     <button type="submit" className="btn teal-text">submit</button> 
                 </form> 
             </div>             

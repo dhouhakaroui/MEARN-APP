@@ -29,7 +29,7 @@ router.get('/',(req,res)=>{
 
 //get posts by user_id
 router.get('/posts/:user_id',(req,res)=>{
-    post.find({user: req.params.user_id})
+    post.find({user: req.params.user_id}).sort({date: -1})
         .then(post=>{
             if(!post){ return  res.status(404).json({msg: 'not have posts'});}
             res.status(201).send(post)})
@@ -141,13 +141,21 @@ router.put('/delete_comment/:post_id/:comment_id',auth,(req,res)=>{
 
 //update comment
 router.put('/update_comment/:postId/:commentId',auth,(req,res)=>{
-    post.findByIdAndUpdate({_id:req.params.postId,'comments.user':req.userId.toString(),'comments._id':req.params.commentId},{$set:{'comments.0.text':req.body.text}} )
-    .then(post=>{res.status(201).send(post)})
-    .catch((err)=>{
-        console.error(err.message)
-        res.status(500).send({msg:'server error'})
-    })
-
+    post.findOne({_id: req.params.postId})
+        .then(post => {
+            if(post.comments.filter(comment => comment._id.toString() === req.params.commentId).length === 0){
+                return res.status(404).json({msg:'Comment Not Found'});
+            }
+            var removeIndex = post.comments.map(comment => comment._id.toString()).indexOf(req.params.commentId);
+            post.comments.splice(removeIndex,1,req.body);
+            post.save()
+                .then(post=>res.status(201).send({msg:'comment updated'}))
+                .catch(err => res.status(404).json({msg:'No Post found'}));
+        })
+        .catch((err)=>{
+            console.error(err.message)
+            res.status(500).send({msg:'server error'})}) 
 })
+
 
 module.exports=router

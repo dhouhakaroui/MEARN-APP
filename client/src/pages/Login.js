@@ -3,18 +3,18 @@ import {useDispatch,useSelector} from 'react-redux'
 import {loadUser, loginUser} from '../actions/authActions'
 import { MDBContainer, MDBRow, MDBCol, MDBInput, MDBBtn } from 'mdbreact';
 function Login({history}) {
+    const dispatch=useDispatch()
     const [info,setInfo]= useState({
         email:'',
         password:''
     })
     const handleChange=(e)=>{setInfo({...info,[e.target.name]:e.target.value})}
     const [errors, setErrors] = useState(null)
-    const dispatch=useDispatch()
+    const auth=useSelector(state=>state.authReducer)
     const login=e=>{
         e.preventDefault()
         dispatch(loginUser(info))       
-    }
-    const auth=useSelector(state=>state.authReducer)
+    }    
     useEffect(() => {
         if (auth.isAuth){{dispatch(loadUser()); history.push('/posts')}}
         if (auth.errors){ setErrors(auth.errors)}
@@ -27,13 +27,13 @@ function Login({history}) {
                     <form onSubmit={login}>
                         <p className="h5 text-center mb-4">Sign in</p>
                         <div className="grey-text">
-                        <MDBInput label="Type your email" icon="envelope" group type="email" validate error="wrong"
-                            success="right"  name='email' onChange={handleChange} onFocus={()=>setErrors(null)}/>
-                        <MDBInput label="Type your password" icon="lock" group type="password" name='password' onChange={handleChange} validate />
+                            <MDBInput label="Type your email" icon="envelope" group type="email" validate error="wrong"
+                                success="right"  name='email' onChange={handleChange} onFocus={()=>setErrors(null)}/>
+                            <MDBInput label="Type your password" icon="lock" group type="password" name='password' onChange={handleChange} validate />
                         </div>
                         {!errors?null:errors.map(el=><p>{el.msg}</p>)}
                         <div className="text-center">
-                        <MDBBtn type='submit'>Login</MDBBtn>
+                            <MDBBtn type='submit'>Login</MDBBtn>
                         </div>
                     </form>
                     </MDBCol>

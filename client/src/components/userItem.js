@@ -17,16 +17,16 @@ function UserItem({user}) {
           </Link>
           <div className="team-content">
             <h3 className="name">{user.firstName +' ' +user.lastName}</h3>
-            <h4 className="title">{date}</h4>
+            <p className="title">{date}</p>
           </div>
           {(!auth.isAuth || !auth.user.role)?null:
           <div>
-          <div onClick={()=>dispatch(deleteuser(user._id))}>
-            <i className="fas fa-user-times" style={{color:"red" }}/>
-          </div>
-          <div  onClick={()=>dispatch(addAdmin(user._id))} > 
-            <i className="fas fa-user-plus" style={{color:"blue" }}/>
-          </div>
+            <div onClick={()=>dispatch(deleteuser(user._id))}>
+              <i className="fas fa-user-times" style={{color:"red" }}/>
+            </div>
+            <div  onClick={()=>dispatch(addAdmin(user._id))} > 
+              <i className="fas fa-user-plus" style={{color:"blue" }}/>
+            </div>
           </div>}
           <ul className="social">
             <li><i className="fab fa-facebook"/></li>
