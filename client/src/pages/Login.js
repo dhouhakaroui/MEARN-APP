@@ -12,12 +12,11 @@ function Login({history}) {
     const dispatch=useDispatch()
     const login=e=>{
         e.preventDefault()
-        dispatch(loginUser(info))
-        dispatch(loadUser())
+        dispatch(loginUser(info))       
     }
     const auth=useSelector(state=>state.authReducer)
     useEffect(() => {
-        if (auth.isAuth){ history.push('/posts')}
+        if (auth.isAuth){{dispatch(loadUser()); history.push('/posts')}}
         if (auth.errors){ setErrors(auth.errors)}
     }, [auth.isAuth,auth.errors])
     return (

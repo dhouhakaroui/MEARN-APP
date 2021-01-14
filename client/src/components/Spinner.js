@@ -7,7 +7,6 @@ const Spinner = () => {
         style={{width: '200px', margin: 'auto', display: 'block'}}
         alt="Loading..."
       />
-      <h2 style={{textAlign:"center"}}>loading...</h2>
     </>
   );
 }

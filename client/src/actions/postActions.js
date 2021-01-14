@@ -113,7 +113,7 @@ export const addComment = (postId,commentData) => dispatch => {
     setToken()
     axios
         .put(`/post/addcomment/${postId}`,commentData)
-        .then(res => dispatch(getPost()))
+        .then(res => dispatch(getPost(postId)))
         .catch(err => dispatch({
             type: GET_ERRORS,
             payload: err.response.data
@@ -125,7 +125,7 @@ export const deleteComment = (postId,commentId) => dispatch => {
     setToken()
     axios
         .put(`/post/delete_comment/${postId}/${commentId}`)
-        .then(res => dispatch(getPost()))
+        .then(res => dispatch(getPost(postId)))
         .catch(err => dispatch({
             type: GET_ERRORS,
             payload: err.response.data
@@ -136,7 +136,7 @@ export const updateComment = (postId,commentData) => dispatch => {
     setToken()
     axios
         .put(`/post/update_comment/${postId}/${commentData._id}`,commentData)
-        .then(res => dispatch(getPost()))
+        .then(res => dispatch(getPost(postId)))
         .catch(err => dispatch({
             type: GET_ERRORS,
             payload: err.response.data

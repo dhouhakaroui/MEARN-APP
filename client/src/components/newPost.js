@@ -8,8 +8,7 @@ function NewPost({user}) {
         user:user._id,
         name:user.firstName +" "+user.lastName ,
         text:"",
-        avatar:user.avatar||"avatar.jpg",
-        comments:[]
+        avatar:user.avatar||"avatar.jpg"
     })
     const [errors, setErrors] = useState(null)
     useEffect(() => {if (posts.errors){ setErrors(posts.errors)}},[posts.errors])    
@@ -27,7 +26,6 @@ function NewPost({user}) {
             <div className="card-body">   
                 <form onSubmit={add}>
                     <textarea className="form-control" placeholder="Create a post" type="text" onFocus={()=>setErrors(null)} value={post.text} onChange={handleChange}/>
-                    {errors&& <div onClick={alert(errors.msg)}  ></div> }
                     <button type="submit" className="btn teal-text">submit</button> 
                 </form> 
             </div>             
