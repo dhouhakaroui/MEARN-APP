@@ -1,5 +1,6 @@
 import React from "react";
 import { MDBContainer, MDBCard, MDBCardBody, MDBMask, MDBView } from "mdbreact";
+import photo from "../res/background.jpeg"
 
 const BlogPage = () => {
   return (
@@ -7,16 +8,17 @@ const BlogPage = () => {
             <MDBCard reverse>
               <MDBView hover cascade waves>
                 <img
-                  src="https://mdbootstrap.com/img/Photos/Slides/img%20(142).jpg"
+                  src={photo}
                   alt=""
                   className="img-fluid"
                 />
                 <MDBMask overlay="white-slight" className="waves-light" />
               </MDBView>
               <MDBCardBody cascade className="text-center" >
-                <h2 className="font-weight-bold" > WELCOME </h2>
-                <p>
-                  Written by <strong> GO MY CODE Students</strong>, 19/12/2020
+                <h2 className="font-weight-bold teal-text" > WELCOME </h2>
+                <p className="teal-text" >
+                  Written by <strong className="black-text"> GO MY CODE Students</strong>, 
+                  {new Date().getDate()}/{new Date().getMonth()+1}/{new Date().getFullYear()}
                 </p>
               </MDBCardBody>
             </MDBCard>

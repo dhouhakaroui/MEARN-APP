@@ -1,7 +1,7 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
-import { deleteuser } from '../actions/userActions'
+import { addAdmin, deleteuser } from '../actions/userActions'
 function UserItem({user}) {
     const auth=useSelector(state=>state.authReducer)
     const dispatch = useDispatch()
@@ -20,8 +20,13 @@ function UserItem({user}) {
             <h4 className="title">{date}</h4>
           </div>
           {(!auth.isAuth || !auth.user.role)?null:
+          <div>
           <div onClick={()=>dispatch(deleteuser(user._id))}>
             <i className="fas fa-user-times" style={{color:"red" }}/>
+          </div>
+          <div  onClick={()=>dispatch(addAdmin(user._id))} > 
+            <i className="fas fa-user-plus" style={{color:"blue" }}/>
+          </div>
           </div>}
           <ul className="social">
             <li><i className="fab fa-facebook"/></li>

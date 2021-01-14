@@ -3,10 +3,11 @@ const router=express.Router()
 const auth=require('../middleware/auth')
 const authAdmin=require('../middleware/authAdmin')
 const post=require('../models/post')
+const user = require('../models/user')
 
 //add new post
 router.post('/',auth,(req,res)=>{
-    if (!req.body.text){return res.status(400).send({errors:[{msg:"post is empty!"}]})}
+    if (!req.body.text){return res.status(400).send({msg:"post is empty!"})}
     let newPost =new post({...req.body,user:req.userId})
     newPost.save()
             .then(post=>res.status(201).send(post))
@@ -30,7 +31,7 @@ router.get('/',(req,res)=>{
 router.get('/posts/:user_id',(req,res)=>{
     post.find({user: req.params.user_id})
         .then(post=>{
-            if(!post){ return  res.status(404).json({msg: 'No Post found'});}
+            if(!post){ return  res.status(404).json({msg: 'not have posts'});}
             res.status(201).send(post)})
         .catch((err)=>{
             console.error(err.message)
@@ -52,7 +53,9 @@ router.get('/:post_id',(req,res)=>{
 
 //delet post 
 router.delete('/delete/:_id',auth,(req,res)=>{
-    post.findOneAndDelete({_id:req.params._id,user:req.userId})
+    const userauth=user.findById({ $or: [{_id:req.userId},{role:1}]})
+    if(!userauth){return res.status(404).json({msg:"User not authorised"})}
+    post.findOneAndDelete({_id:req.params._id})
     .then(post=>{
         if(!post){res.status(401).send({msg:"User not authorised"})}
         res.status(201).send({msg:'post deleted'})})
@@ -67,7 +70,9 @@ router.delete('/delete/:_id',auth,(req,res)=>{
 // update text post
 router.put('/:post_id',auth,(req,res)=>{
     post.findByIdAndUpdate({_id:req.params.post_id,user:req.userId}, req.body)
-        .then(post=>{res.status(201).send(post)})
+        .then(post=>{
+            if(!post){res.status(401).send({msg:"User not authorised"})}
+            res.status(201).send(post)})
         .catch((err)=>{
             console.error(err.message)
             res.status(500).send({msg:'server error'})
@@ -116,34 +121,32 @@ router.put('/addcomment/:post_id',auth,(req,res)=>{
 
 //delet comment
 router.put('/delete_comment/:post_id/:comment_id',auth,(req,res)=>{
-    const Post = post.findById(req.params.post_id);
-    const comment = Post.comments.find((comment) => comment._id === req.params.comment_id );
-    if (!comment)
-        return res.status(404).json({ msg: "comment does not exist " });
-    if (comment.user !== req.userId) 
-        return res.status(401).json({ msg: "user not authorized " });
-    post.findByIdAndUpdate(req.params.post_id,{$pull: { comments: { _id: req.params.comment_id }}})
-        .then(post=>res.status(201).send({msg:'comment deleted'}))
+    const userauth=user.findById({ $or: [{_id:req.userId},{role:1}]})
+    if(!userauth){return res.status(404).json({msg:"User not authorised"})}
+    post.findOne({_id: req.params.post_id})
+        .then(post => {
+            if(post.comments.filter(comment => comment._id.toString() === req.params.comment_id).length === 0){
+                return res.status(404).json({msg:'Comment Not Found'});
+            }
+            var removeIndex = post.comments.map(comment => comment._id.toString()).indexOf(req.params.comment_id);
+            post.comments.splice(removeIndex,1);
+            post.save()
+                .then(post=>res.status(201).send({msg:'comment deleted'}))
+                .catch(err => res.status(404).json({msg:'No Post found'}));
+        })
         .catch((err)=>{
             console.error(err.message)
-            res.status(500).send({msg:'server error'})
-    }) 
+            res.status(500).send({msg:'server error'})}) 
 })
 
 //update comment
-router.put('/update_comment/:post_id/:comment_id',auth,(req,res)=>{
-    post.findOne({_id: req.params.post_id})
-        .then(post => {
-            const newComment = {
-                _id:req.params.comment_id,
-                user: req.userId,
-                text: req.body.text,
-                name: req.body.name,
-                avatar: req.body.avatar,    
-            }
-            post.comments.unshift(newComment);
-            post.save().then(post => res.json(post)); 
-        }).catch(err => res.status(404).json({msg:'No Post found'}));
+router.put('/update_comment/:postId/:commentId',auth,(req,res)=>{
+    post.findByIdAndUpdate({_id:req.params.postId,'comments.user':req.userId.toString(),'comments._id':req.params.commentId},{$set:{'comments.0.text':req.body.text}} )
+    .then(post=>{res.status(201).send(post)})
+    .catch((err)=>{
+        console.error(err.message)
+        res.status(500).send({msg:'server error'})
+    })
 
 })
 

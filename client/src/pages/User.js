@@ -8,7 +8,8 @@ function User({match}) {
     const dispatch = useDispatch()
     useEffect(() => {dispatch(getuser(match.params.UserId))}, [])
     return (
-        <div>{(!user)? <Spinner/>:
+        <div style={{display:"flex",justifyContent:"center"}}>
+            {(!user)? <Spinner/>:
             <ProfileCard user={user}/>
         }</div>
     )

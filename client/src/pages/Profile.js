@@ -17,18 +17,21 @@ function Profile() {
         dispatch(getPostsUser(auth.user._id))
     }, [posts])
     return (
-        <div > {!auth?<Spinner/>:
+        <div > 
+            {!auth?<Spinner/>:
             <div>{auth.user&& 
                 <div  style={{margin:"1em",display:"flex"}}>
                     <ProfileCard user={auth.user}/>
-                    <div  style={{width:"60%",padding:"1em"}}>
-                    <NewPost user={auth.user} /> 
-                    <div>
-                        {posts ? posts.map(el => <PostItem key={el._id} post={el}/>):null}
-                    </div> 
+                    <div style={{width:"60%",padding:"1em"}}>
+                        <NewPost user={auth.user} /> 
+                        <div>
+                            {posts ? posts.map(el => <PostItem key={el._id} post={el}/>):null}
+                        </div> 
                     </div>
                 </div>
-            }</div>}
+            }
+            </div>
+            }
         </div>
     )
 }

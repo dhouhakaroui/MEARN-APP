@@ -44,3 +44,8 @@ img {
 .form-control::placeholder {
   color: #bbb !important;
 }
+.formedit {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}

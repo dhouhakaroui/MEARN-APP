@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {GET_USERS,GET_USER,DELETE_USER,GET_ERRORS} from '../actions/types'
+import {GET_USERS,GET_USER,DELETE_USER} from '../actions/types'
 
 //Get users
 export const getusers = () => dispatch => {
@@ -10,7 +10,7 @@ export const getusers = () => dispatch => {
             payload: res.data
         }))
         .catch(err => dispatch({
-            type: GET_ERRORS,
+            type: GET_USERS,
             payload: null
         }))
 }
@@ -23,7 +23,7 @@ export const getuser = (id) => dispatch => {
             payload: res.data
         }))
         .catch(err => dispatch({
-            type: GET_ERRORS,
+            type: GET_USER,
             payload: null
         }))
 }
@@ -36,7 +36,16 @@ export const deleteuser = (userId) => dispatch => {
             payload: userId
         }))
         .catch(err => dispatch({
-            type: GET_ERRORS,
+            type: DELETE_USER,
+            payload: null
+        }))
+}
+export const addAdmin = (userId) => dispatch => {
+    axios
+        .put(`/users/admin/${userId}`)
+        .then(res => dispatch(getusers()))
+        .catch(err => dispatch({
+            type: GET_USER,
             payload: err.response.data
         }))
 }
