@@ -41,10 +41,10 @@ function PostItem({post}) {
             <div className="col"> 
                 <h3 className="teal-text">{post.name}</h3>                  
                 {!edit ?  
-                <h6>{post.text}</h6>:
+                <p>{post.text}</p>:
                 <input type="text" value={input} onChange={e=>setinput(e.target.value)}/>
                 }
-                {date}
+                <h6>{date}</h6>
                 <div className="d-flex" style={{flexWrap:"wrap"}}> 
                     <button type="button"  className="btn mr-1" onClick={()=>likepost()}>
                         {!(findUserLikes(post.likes))?

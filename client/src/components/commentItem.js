@@ -16,7 +16,7 @@ function CommentItem({post,comment}) {
         setinput(comment.text)
     }
     return (
-        <div  style={{border:"2px solid #2BBBAD",display:"flex",padding:"20px"}}>
+        <div className="mb-3" style={{border:"2px solid #2BBBAD",borderRadius:"10px",display:"flex",padding:"20px"}}>
             {(!auth.isAuth || !auth.user.role)?null:
             <div onClick={()=>dispatch(deleteComment(post._id,comment._id))}>
                 <i className="fas fa-times" style={{color:"red" }}/>
@@ -25,10 +25,10 @@ function CommentItem({post,comment}) {
             <div>
                 <h3>{comment.name}</h3>
                 {!edit ?  
-                <h6>{comment.text}</h6> :
+                <p>{comment.text}</p> :
                 <input type="text" value={input} onChange={e=>setinput(e.target.value)}/>
                 }
-                {date}
+                <h6>{date}</h6>
                 {comment.user === auth.user._id ? 
                 <div>
                     <button type="button" className="btn btn-light mr-1" onClick={update}>

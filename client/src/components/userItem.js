@@ -17,7 +17,7 @@ function UserItem({user}) {
           </Link>
           <div className="team-content">
             <h3 className="name">{user.firstName +' ' +user.lastName}</h3>
-            <h4 className="title">{date}</h4>
+            <p className="title">{date}</p>
           </div>
           {(!auth.isAuth || !auth.user.role)?null:
           <div>
