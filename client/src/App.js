@@ -27,8 +27,8 @@ function App() {
         <Route exact path='/home' component={Home}/>
         <Route exact path='/register' component={Register}/>
         <Route exact path='/login' component={Login}/>
-        <PrivateRoute exact path='/posts' component={Posts}/>
-        <PrivateRoute exact path="/post/:postId" component={Post} />
+        <PrivateRoute exact path='/Posts' component={Posts}/>
+        <PrivateRoute exact path="/Post/:postId" component={Post} />
         <Route exact path='/Users' component={Users}/>
         <Route exact path='/User/:UserId' component={User}/>
         <PrivateRoute exact path='/profile' component={Profile}/>

@@ -25,7 +25,7 @@ const dispatch = useDispatch()
               <MDBNavLink to="/Users"><i className="fas fa-users"/>Users</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/posts"><i className="fas fa-comments"/>Posts</MDBNavLink>
+              <MDBNavLink to="/Posts"><i className="fas fa-comments"/>Posts</MDBNavLink>
             </MDBNavItem>
             {(auth.isAuth )?
             <MDBNavItem active>
@@ -51,18 +51,18 @@ const dispatch = useDispatch()
                 </MDBDropdownToggle>
                 {(auth.isAuth )?
                 <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="/">
+                  <MDBDropdownItem href="">
                     <Link to="/profile">profile</Link>
                   </MDBDropdownItem>          
-                  <MDBDropdownItem href="/">
+                  <MDBDropdownItem href="">
                     <Link onClick={()=>{dispatch(logoutUser())}}>log out</Link>
                   </MDBDropdownItem>
                 </MDBDropdownMenu>:
                 <MDBDropdownMenu className="dropdown-default">
-                  <MDBDropdownItem href="/">
+                  <MDBDropdownItem href="">
                     <Link to="/login">login</Link>
                   </MDBDropdownItem>          
-                  <MDBDropdownItem href="#!"  >
+                  <MDBDropdownItem href=""  >
                     <Link to="/register">register</Link>
                   </MDBDropdownItem>
                 </MDBDropdownMenu>}
