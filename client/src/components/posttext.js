@@ -6,7 +6,7 @@ function Posttext({post}) {
     const date = dateP.toUTCString()
     return (
         <div className="mb-3" style={{border:"2px solid #2BBBAD",borderRadius:"10px",display:"flex",padding:"20px"}}>
-            <img src={process.env.PUBLIC_URL +"/"+avatar} style={{width:"20%",height:"80%"}}/>
+            <img src={process.env.PUBLIC_URL +"/"+avatar} style={{width:"20%",height:"50%"}}/>
             <div>
                 <h3>{post.name}</h3>
                 <p>{post.text}</p>

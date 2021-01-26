@@ -48,8 +48,8 @@ function PostItem({post}) {
                 <div className="d-flex" style={{flexWrap:"wrap"}}> 
                     <button type="button"  className="btn mr-1" onClick={()=>likepost()}>
                         {!(findUserLikes(post.likes))?
-                        <i class="far fa-heart"/> :
-                        <i class="fas fa-heart" style={{color:"red"}}/>
+                        <i className="far fa-heart"/> :
+                        <i className="fas fa-heart" style={{color:"red"}}/>
                         }  
                         <span className="badge badge-light" >{post.likes.length}</span>likes                                              
                     </button> 
