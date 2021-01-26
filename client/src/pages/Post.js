@@ -22,7 +22,7 @@ function Post({match}) {
                         <div className="col-md-12">
                             <Posttext post={post}/>
                             {auth?<NewComment user={auth.user} postId={post._id}/>:null}
-                            {post.comments?post.comments.map(el=><CommentItem post={post} comment={el}/>):null}
+                            {post.comments?post.comments.map((el,i)=><CommentItem key={i} post={post} comment={el}/>):null}
                         </div>
                     </div>
                 </div>

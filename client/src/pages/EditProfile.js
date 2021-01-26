@@ -21,7 +21,8 @@ function EditProfile({history}) {
         <form onSubmit={submit} className="formedit">
             <div>
                 {user.avatar&& <img src={user.avatar} alt="avatar" style={{width:"50%",borderRadius: "50%"}}/>}
-            </div>            
+            </div>   
+            {/* <MDBInput label="link photo" icon="user" name='avatar'value={Info.avatar} onChange={handleChange} group type="text" validate error="wrong" success="right" /> */}
             <MDBInput label="Your first name" icon="user" name='firstName'value={Info.firstName} onChange={handleChange} group type="text" validate error="wrong" success="right" />
             <MDBInput label="Your last name" icon="user" name='lastName'value={Info.lastName} onChange={handleChange} group type="text" validate error="wrong" success="right" />
             <MDBInput label="Your age" icon="calendar-alt" name='age'value={Info.age} onChange={handleChange} group type="text" validate error="wrong" success="right" />

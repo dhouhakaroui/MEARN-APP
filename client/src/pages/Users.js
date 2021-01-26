@@ -15,7 +15,7 @@ function Users() {
             <Spinner/>:     
             <div className="container">
                 <div className="row">                    
-                    {users.map(el=><UserItem user={el} />)}                           
+                    {users.map((el,i)=><UserItem key={i} user={el} />)}                           
                 </div>
             </div>} 
         </div>

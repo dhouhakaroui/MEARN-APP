@@ -19,7 +19,7 @@ function NewPost({user}) {
         setpost({...post,text:""})
     }
     return (
-        <div class="card" style={{border:"2px solid #2BBBAD"}}>  
+        <div className="card" style={{border:"2px solid #2BBBAD"}}>  
             <div className="card-header text-white default-color">
                 Say Somthing...
             </div>  

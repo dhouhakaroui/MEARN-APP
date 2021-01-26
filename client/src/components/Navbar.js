@@ -55,7 +55,7 @@ const dispatch = useDispatch()
                     <Link to="/profile">profile</Link>
                   </MDBDropdownItem>          
                   <MDBDropdownItem href="">
-                    <Link onClick={()=>{dispatch(logoutUser())}}>log out</Link>
+                    <Link to="" onClick={()=>{dispatch(logoutUser())}}>log out</Link>
                   </MDBDropdownItem>
                 </MDBDropdownMenu>:
                 <MDBDropdownMenu className="dropdown-default">
